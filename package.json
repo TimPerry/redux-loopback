@@ -1,0 +1,19 @@
+{
+  "name": "redux-loopback-middleware",
+  "version": "1.0.0",
+  "description": "Loopback middleware for redux",
+  "main": "index.js",
+  "scripts": {
+    "test": "NODE_ENV=test ./node_modules/.bin/jasmine"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TimPerry/redux-loopback-middleware"
+  },
+  "keywords": [
+    "redux",
+    "loopback"
+  ],
+  "author": "Tim Perry",
+  "license": "MIT"
+}
