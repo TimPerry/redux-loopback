@@ -1,4 +1,4 @@
-export function attemptLoginAction(email, password) {
+export function login(email, password) {
     return {
       type: 'LOOPBACK_LOGIN',
       payload: {
