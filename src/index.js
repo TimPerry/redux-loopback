@@ -1,25 +1,25 @@
-import * as createActions from './actions/create';
-import * as loginActions from './actions/login';
+import {create} from './actions/create';
+import {login, loginPending, loginSuccessAction, loginError} from './actions/login';
 
 export const actions = {
-    create: createActions.create,
-    login: loginActions.login
+    create: create,
+    login: login
 };
 
 const actionHandlers = {
-    'LOOPBACK_USER_LOGIN': function(app, store, action) {
-        store.dispatch(loginPendingAction());
+    'LOOPBACK_LOGIN': function(app, store, action) {
+        store.dispatch(loginPending());
         const loginDetails = action.payload;
         const modelName = action.meta.modelName;
         return app.models[modelName].login(loginDetails, (err, res) => {
             if (!err) {
-                store.dispatch(loginSuccessAction(accessToken));
+                store.dispatch(loginSuccessAction(res));
             } else {
                 store.dispatch(loginErrorAction(err));
             }
         });
     },
-    'LOOPBACK_USER_REGISTER': function(app, store, action) {
+    'LOOPBACK_REGISTER': function(app, store, action) {
         store.dispatch(registerPendingAction());
         const registerDetails = action.payload;
         return app.models.User.create(registerDetails, (err, res) => {
