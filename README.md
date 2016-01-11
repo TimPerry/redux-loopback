@@ -49,3 +49,57 @@ const store = createStoreWithMiddleware(rootReducer);
 
 export default store;
 ```
+
+## Usage 
+
+Once you are all setup you can dispatch actions. These actions will call various loopback methods and then dispatch other actions that you should act upon.
+
+### Dispatching actions
+
+```
+import {actions: {create, find, findById, findOne, updateAll, destroyAll, destroyById}} from 'redux-loopback';
+
+create('Landlord', {'name': 'Tim Perry'});
+
+find('Landlord', {'name': 'Tim Perry'});
+findById('Landlord', 14);
+findOne('Landlord', {'name': 'Tim Perry'});
+
+updateAll('Landlord', {'name': 'Tim Perry'}, {'some': 'update'});
+
+destroyAll('Landlord', {'name': 'Tim Perry'});
+destroyById('Landlord', 12);
+```
+
+### Handling actions
+
+All of the actions you dispatch will dispatch a pending action. Then once the data is recieved you will get one of two actions being fired:
+- success with the payload of the response
+- failure with the payload of the response (the actions will also be identified as an error)
+
+e.g. for login you would need to handle these three actions:
+
+#### LOOPBACK_LOGIN_PENDING
+```
+{
+	type: 'LOOPBACK_LOGIN_PENDING',
+	payload: // will contain the payload you send when you dispatched the login action
+}
+```
+
+#### LOOPBACK_LOGIN_SUCCESS
+```
+{
+	type: 'LOOPBACK_LOGIN_SUCCESS',
+	payload: // the response from the server
+}
+```
+
+#### LOOPBACK_LOGIN_ERROR
+```
+{
+	type: 'LOOPBACK_LOGIN_ERROR',
+	payload: // the error from the server,
+	error: true
+}
+```
