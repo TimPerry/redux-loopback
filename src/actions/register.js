@@ -1,27 +1,30 @@
-export function registerAttempt(name, email, password) {
+export function register(name, email, password, modelName='User') {
   return {
-    type: 'LOOPBACK_USER_REGISTER',
+    type: 'LOOPBACK_REGISTER',
     payload: {
       name: name,
       email: email,
       password: password
+    },
+    meta: {
+      modelName: modelName
     }
   };
 }
 
 export function registerSuccess() {
   return {
-    type: 'LOOPBACK_USER_REGISTER_SUCCESS'
+    type: 'LOOPBACK_REGISTER_SUCCESS'
   };
 };
 
 export function registerPending() {
   return {
-    type: 'LOOPBACK_USER_REGISTER_PENDING'
+    type: 'LOOPBACK_REGISTER_PENDING'
   };
 }
 
-export function registerErrorAction(err) {
+export function registerError(err) {
   return {
     type: 'LOOPBACK_REGISTER_ERROR',
     payload: err,

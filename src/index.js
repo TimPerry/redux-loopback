@@ -1,9 +1,11 @@
 import {create} from './actions/create';
 import {login, loginPending, loginSuccess, loginError} from './actions/login';
+import {register, registerPending, registerSuccess, registerError} from './actions/register';
 
 export const actions = {
     create: create,
-    login: login
+    login: login,
+    register: register
 };
 
 const actionHandlers = {
@@ -20,13 +22,14 @@ const actionHandlers = {
         });
     },
     'LOOPBACK_REGISTER': function(app, store, action) {
-        store.dispatch(registerPendingAction());
+        store.dispatch(registerPending());
         const registerDetails = action.payload;
-        return app.models.User.create(registerDetails, (err, res) => {
+        const modelName = action.meta.modelName;
+        return app.models[modelName].create(registerDetails, (err, res) => {
             if (!err) {
-                store.dispatch(registerSuccessAction(res));
+                store.dispatch(registerSuccess(res));
             } else {
-                store.dispatch(registerErrorAction(err));
+                store.dispatch(registerError(err));
             }
         });
     }
