@@ -1,5 +1,5 @@
 import {create} from './actions/create';
-import {login, loginPending, loginSuccessAction, loginError} from './actions/login';
+import {login, loginPending, loginSuccess, loginError} from './actions/login';
 
 export const actions = {
     create: create,
@@ -13,9 +13,9 @@ const actionHandlers = {
         const modelName = action.meta.modelName;
         return app.models[modelName].login(loginDetails, (err, res) => {
             if (!err) {
-                store.dispatch(loginSuccessAction(res));
+                store.dispatch(loginSuccess(res));
             } else {
-                store.dispatch(loginErrorAction(err));
+                store.dispatch(loginError(err));
             }
         });
     },

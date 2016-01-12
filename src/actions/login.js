@@ -17,7 +17,7 @@ export function loginPending() {
   };
 }
 
-export function loginSuccessAction(payload) {
+export function loginSuccess(payload) {
   return {
     type: 'LOOPBACK_LOGIN_SUCCESS',
     payload: payload
