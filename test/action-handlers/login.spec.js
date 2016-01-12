@@ -20,16 +20,20 @@ describe('Login action handler', function(){
     expect(store.dispatch).to.have.been.called.with({type: 'LOOPBACK_LOGIN_PENDING'});
   });
 
-  // xit('Should dispatch a success action when no error is reported', function(){
-  //   app.models.User.login = function(data, callback) {
-  //     console.log('boomsticks');
-  //     callback(undefined, {some: 'data'});
-  //   };
-  //   expect(store.dispatch).to.have.been.called.with({ type: 'LOOPBACK_LOGIN_SUCCESS', payload: {some: 'data'}});
-  // });
+  it('Should dispatch a success action when no error is reported', function(){
+    app.models.User.login = function(data, callback) {
+      callback(undefined, {some: 'data'});
+    };
+    loginHandler(app, store, payload);
+    expect(store.dispatch).to.have.been.called.with({ type: 'LOOPBACK_LOGIN_SUCCESS', payload: {some: 'data'}});
+  });
 
-  // xit('Should dispatch a error action when a error is reported', function(){
-
-  // });
+  it('Should dispatch a error action when a error is reported', function(){
+    app.models.User.login = function(data, callback) {
+      callback({some: 'error'}, {some: 'errordata'});
+    };
+    loginHandler(app, store, payload);
+    expect(store.dispatch).to.have.been.called.with({ type: 'LOOPBACK_LOGIN_ERROR', payload: {some: 'error'}, error: true});
+  });
 
 });
