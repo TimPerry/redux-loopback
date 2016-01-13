@@ -2,7 +2,7 @@ import {create} from './actions/create';
 import {login} from './actions/login';
 import {register, registerPending, registerSuccess, registerError} from './actions/register';
 import loginHandler from './action-handlers/login';
-import registerHandler from './action-handlers/login';
+import registerHandler from './action-handlers/register';
 
 export const actions = {
     create: create,
