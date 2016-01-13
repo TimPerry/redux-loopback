@@ -12,9 +12,10 @@ export function register(name, email, password, modelName='User') {
   };
 }
 
-export function registerSuccess() {
+export function registerSuccess(payload) {
   return {
-    type: 'LOOPBACK_REGISTER_SUCCESS'
+    type: 'LOOPBACK_REGISTER_SUCCESS',
+    payload: payload
   };
 };
 
