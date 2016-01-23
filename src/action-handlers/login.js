@@ -7,8 +7,18 @@ export default function loginHandler(app, store, action) {
     return app.models[modelName].login(loginDetails, (err, res) => {
         if (!err) {
             store.dispatch(loginSuccess(res));
+            if(action.meta.successActions) {
+              action.meta.successActions.forEach(function(action){
+                store.dispatch(action);
+              });
+            }
         } else {
             store.dispatch(loginError(err));
+            if(action.meta.errorActions) {
+              action.meta.errorActions.forEach(function(action){
+                store.dispatch(action);
+              });
+            }
         }
     });
 }

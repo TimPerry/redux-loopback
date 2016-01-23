@@ -1,4 +1,4 @@
-export function login(email, password, modelName='User') {
+export function login(email, password, modelName='User', successActions, errorActions) {
     return {
       type: 'LOOPBACK_LOGIN',
       payload: {
@@ -6,7 +6,9 @@ export function login(email, password, modelName='User') {
         password: password
       },
       meta: {
-        modelName: modelName
+        modelName: modelName,
+        successActions: successActions,
+        errorActions: errorActions
       }
     };
 }
