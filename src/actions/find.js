@@ -1,15 +1,15 @@
-
-export function loopbackFindByIDAction(modeName, payload) {
+export function findById(modeName, modelId, payload) {
     return {
         type: 'LOOPBACK_MODEL_FIND_BY_ID',
         payload: payload,
         meta: {
-            modelName: modeName
+            modelName: modeName,
+            modelId: modelId
         }
     }
 }
 
-export function loopbackFindOneAction(modeName, payload) {
+export function findOne(modeName, payload) {
     return {
         type: 'LOOPBACK_MODEL_FIND_ONE',
         payload: payload,
@@ -19,7 +19,7 @@ export function loopbackFindOneAction(modeName, payload) {
     }
 }
 
-export function loopbackFindAction(modeName, payload) {
+export function find(modeName, payload) {
     return {
         type: 'LOOPBACK_MODEL_FIND',
         payload: payload,

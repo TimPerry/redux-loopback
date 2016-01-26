@@ -45,9 +45,22 @@ const modelError = function(action, err) {
     }
 };
 
-const singleParamModelMethod = function(app, store, action) {
+export function doubleParamModelMethod(app, store, action) {
     store.dispatch(modelPending(action));
-    const method = camelize(action.type.substr(15));
+    const method = camelize(action.type.substr(15).toLowerCase());
+    const modelName = action.meta.modelName;
+    return app.models[modelName][method](action.meta.modelId, action.payload, (err, res) => {
+        if (!err) {
+            store.dispatch(modelSuccess(action, res));
+        } else {
+            store.dispatch(modelError(action, err));
+        }
+    });
+}
+
+export function singleParamModelMethod(app, store, action) {
+    store.dispatch(modelPending(action));
+    const method = camelize(action.type.substr(15).toLowerCase());
     const modelName = action.meta.modelName;
     return app.models[modelName][method](action.payload, (err, res) => {
         if (!err) {
