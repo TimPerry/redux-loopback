@@ -1,16 +1,10 @@
-# WORK IN PROGESS!
+# Please note this was a spike and does not work.
 # Redux loopback middleware
 
 ## Prerequisites
 You will need to create a loopback client. The instructions can be found here: 
 ```
 https://docs.strongloop.com/display/public/LB/LoopBack+in+the+client
-```
-
-## Install
-
-```
-npm install redux-loopback-middleware
 ```
 
 ## Setup
